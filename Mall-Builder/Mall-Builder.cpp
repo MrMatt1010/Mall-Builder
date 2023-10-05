@@ -69,6 +69,38 @@ public:
 	}
 };
 
+//Child Class Triangle
+class Triangle : public Shapes {
+public:
+	//Constructor for the Triangle class
+	Triangle(double b, double h) : Shapes(b, h) {}
+
+//Function to calculate the area for a Triangle
+	void calculateArea() override {
+		result = 0.5 * base * height;
+	}
+
+//Function to calculate the perimeter of a Triangle
+	void calculatePerimeter() override {
+//In the context of this problem, you'd need additional information to calculate the preimeter of a triangle
+//Instead I have chosen to put out an error message. 
+		cout << "Perimeter cannot be calculated without more information" << endl;
+	}
+};
+
+//Child Class Circle
+class Circle : public Shapes {
+public:
+	//Constructor for the circle class
+	Circle(double radius) : Shapes(radius, 0.0) {}
+
+//Function to calculate the area for a circle
+	void calculateArea() override {
+		result = 3.14159265359 * base; 
+	}
+};
+
+
 int main()
 {
    
