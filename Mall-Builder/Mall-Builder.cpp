@@ -39,7 +39,7 @@ public:
 class Square : public Shapes {
 public:
 //Constructor the the Square class
-	Square(double side); Shapes(side, side) {}
+	Square(double side) : Shapes(side, side) {}
 
 //Function to calculate the area for the square
 	void calculateArea() override {
@@ -103,7 +103,7 @@ public:
 
 int main()
 {
-	int choice;
+	int choice = 0;
 	double data1, data2;
 
 	do {
@@ -114,14 +114,49 @@ int main()
 		cout << "2. Rectangle" << endl;
 		cout << "3. Triangle" << endl;
 		cout << "4. Circle" << endl;
+		cout << "5. Exit" << endl;
 		cout << "Enter your choice: " << endl;
 		cin >> choice;
 		
 		Shapes* shape = nullptr;
 
+		switch (choice) {
+		case 1:
+			cout << "Enter the side length of the square: ";
+			cin >> data1;
+			shape = new Square(data1);
+			break;
+		case 2:
+			cout << "Enter the length and width of the rectangle: ";
+			cin >> data1 >> data2;
+			shape = new Rectangle(data1, data2);
+			break;
+		case 3:
+			cout << "Enter the base and height of the triangle: ";
+			cin >> data1 >> data2;
+			shape = new Triangle(data1, data2);
+			break;
+		case 4:
+			cout << "Enter the radius of the circle: ";
+			cin >> data1;
+			shape = new Circle(data1);
+			break;
+		case 5:
+			return 0;
+		default:
+			cout << "Invalid choice, Please try again." << endl;
+			break;
+		}
 
-
+		if (shape) {
+			shape->calculateArea();
+			shape->calculatePerimeter();
+			shape->giveResult();
+			delete shape;
 	}
+	} while (choice != 5);
+
+	return 0;
 }
 
 
