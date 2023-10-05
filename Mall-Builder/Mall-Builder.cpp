@@ -103,7 +103,25 @@ public:
 
 int main()
 {
-   
+	int choice;
+	double data1, data2;
+
+	do {
+		cout << "*****************" << endl;
+		cout << "Shapes Calculator" << endl << endl;
+		cout << "*****************" << endl;
+		cout << "1. Square" << endl;
+		cout << "2. Rectangle" << endl;
+		cout << "3. Triangle" << endl;
+		cout << "4. Circle" << endl;
+		cout << "Enter your choice: " << endl;
+		cin >> choice;
+		
+		Shapes* shape = nullptr;
+
+
+
+	}
 }
 
 
