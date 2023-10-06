@@ -164,7 +164,7 @@ public:
 	}
 };
 
-
+//Main part of the program where the do while function is located 
 int main()
 {
 	int choice;
