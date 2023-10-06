@@ -1,5 +1,5 @@
 // Mall-Builder.cpp 
-
+#define _USE_MATH_DEFINES
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -33,6 +33,11 @@ public:
 	void giveResult() {
 		cout << "area: " << result << endl;
 	}
+
+	// Draw the shape using asterisks
+	virtual void draw() {
+		std::cout << "Drawing the shape..." << std::endl;
+	}
 };
 
 //Child Class Square
@@ -50,6 +55,18 @@ public:
 	void calculatePerimeter() {
 		result = 4 * base;
 	}
+
+
+	// Draw the square using asterisks
+	void draw() override {
+		std::cout << "Drawing a square:" << std::endl;
+		for (int i = 0; i < base; i++) {
+			for (int j = 0; j < base; j++) {
+				std::cout << "* ";
+			}
+			std::cout << std::endl;
+		}
+	}
 };
 
 //Child Class Rectangle
@@ -66,6 +83,18 @@ public:
 //Function to calculate the perimeter for the Rectangle
 	void calculatePerimeter() override {
 		result = 2 * base + height;
+	}
+
+
+	// Draw the rectangle using asterisks
+	void draw() override {
+		std::cout << "Drawing a rectangle:" << std::endl;
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < base; j++) {
+				std::cout << "* ";
+			}
+			std::cout << std::endl;
+		}
 	}
 };
 
@@ -86,6 +115,18 @@ public:
 //Instead I have chosen to put out an error message. 
 		cout << "Perimeter cannot be calculated without more information" << endl;
 	}
+
+
+	// Draw the triangle using asterisks
+	void draw() override {
+		std::cout << "Drawing a triangle:" << std::endl;
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j <= i; j++) {
+				std::cout << "* ";
+			}
+			std::cout << std::endl;
+		}
+	}
 };
 
 //Child Class Circle
@@ -98,12 +139,35 @@ public:
 	void calculateArea() override {
 		result = 3.14159265359 * base; 
 	}
+
+
+	// Draw the circle using asterisks
+	void draw() override {
+		std::cout << "Drawing a circle (approximated):" << std::endl;
+		int radius = static_cast<int>(base);
+		int centerX = radius;
+		int centerY = radius;
+
+		for (int i = 0; i <= 2 * radius; i++) {
+			for (int j = 0; j <= 2 * radius; j++) {
+				int dx = i - centerX;
+				int dy = j - centerY;
+				if (dx * dx + dy * dy <= radius * radius) {
+					std::cout << "* ";
+				}
+				else {
+					std::cout << "  ";
+				}
+			}
+			std::cout << std::endl;
+		}
+	}
 };
 
 
 int main()
 {
-	int choice = 0;
+	int choice;
 	double data1, data2;
 
 	do {
@@ -142,7 +206,7 @@ int main()
 			shape = new Circle(data1);
 			break;
 		case 5:
-			return 0;
+			cout << "Goodbye!" << endl;
 		default:
 			cout << "Invalid choice, Please try again." << endl;
 			break;
@@ -152,6 +216,7 @@ int main()
 			shape->calculateArea();
 			shape->calculatePerimeter();
 			shape->giveResult();
+			shape->draw(); // This will display the shape in the console
 			delete shape;
 	}
 	} while (choice != 5);
